@@ -2,6 +2,7 @@
 {% load static %}
 {% load blog_tags %}
 {% block content %}
+{% load humanize %}
   <!-- start banner Area -->
   <section class="relative about-banner">
     <div class="overlay overlay-bg"></div>
@@ -35,7 +36,7 @@
                   <a href="#">{{ post.author.get_full_name }}</a> <span class="lnr lnr-user"></span>
                 </p>
                 <p class="date col-lg-3 col-sm-6">
-                  <a href="#">{{ post.published_date|date:"d/M/Y" }}</a> <span class="lnr lnr-calendar-full"></span>
+                  <a href="#">{{post.published_date|naturalday}}</a> <span class="lnr lnr-calendar-full"></span>
                 </p>
                 <p class="view col-lg-3 col-sm-6">
                   <a href="#">{{ post.counted_views }} Views</a> <span class="lnr lnr-eye"></span>
@@ -47,7 +48,7 @@
             </div>
             <div class="col-lg-9 col-md-9">
               <h3 class="mt-20 mb-20">{{ post.title }}</h3>
-              <p>{{ post.content }}</p>
+              <p>{{ post.content|safe }}</p>
             </div>
             <div class="col-lg-12 meta-details">
               <ul class="tags">
@@ -218,4 +219,7 @@
     </div>
   </section>
   <!-- End post-content Area -->
+{% endblock %}
+{% block title %}
+Blog-single
 {% endblock %}
